@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace DoctorWho.Db;
 
-public partial class TblAuthor
+public partial class Author
 {
     public int AuthorId { get; set; }
 
     public string? AuthorName { get; set; }
 
-    public virtual ICollection<TblEpisode> TblEpisodes { get; set; } = new List<TblEpisode>();
+    public virtual ICollection<Episode> TblEpisodes { get; set; } = new List<Episode>();
 }

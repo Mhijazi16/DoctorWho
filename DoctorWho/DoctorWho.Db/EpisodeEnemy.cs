@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DoctorWho.Db;
 
-public partial class TblEpisodeEnemy
+public partial class EpisodeEnemy
 {
     public int EpisodeEnemyId { get; set; }
 
@@ -11,7 +11,7 @@ public partial class TblEpisodeEnemy
 
     public int? EnemyId { get; set; }
 
-    public virtual TblEnemy? Enemy { get; set; }
+    public virtual Enemy? Enemy { get; set; }
 
-    public virtual TblEpisode? Episode { get; set; }
+    public virtual Episode? Episode { get; set; }
 }

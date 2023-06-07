@@ -15,19 +15,19 @@ public partial class DoctorWhoContext : DbContext
     {
     }
 
-    public virtual DbSet<TblAuthor> TblAuthors { get; set; }
+    public virtual DbSet<Author> TblAuthors { get; set; }
 
-    public virtual DbSet<TblCompanion> TblCompanions { get; set; }
+    public virtual DbSet<Companion> TblCompanions { get; set; }
 
-    public virtual DbSet<TblDoctor> TblDoctors { get; set; }
+    public virtual DbSet<Doctor> TblDoctors { get; set; }
 
-    public virtual DbSet<TblEnemy> TblEnemies { get; set; }
+    public virtual DbSet<Enemy> TblEnemies { get; set; }
 
-    public virtual DbSet<TblEpisode> TblEpisodes { get; set; }
+    public virtual DbSet<Episode> TblEpisodes { get; set; }
 
-    public virtual DbSet<TblEpisodeCompanion> TblEpisodeCompanions { get; set; }
+    public virtual DbSet<EpisodeCompanion> TblEpisodeCompanions { get; set; }
 
-    public virtual DbSet<TblEpisodeEnemy> TblEpisodeEnemies { get; set; }
+    public virtual DbSet<EpisodeEnemy> TblEpisodeEnemies { get; set; }
 
     public virtual DbSet<ViewEpisode> ViewEpisodes { get; set; }
 
@@ -37,7 +37,7 @@ public partial class DoctorWhoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<TblAuthor>(entity =>
+        modelBuilder.Entity<Author>(entity =>
         {
             entity.HasKey(e => e.AuthorId).HasName("PK__tblAutho__70DAFC14745C864A");
 
@@ -51,7 +51,7 @@ public partial class DoctorWhoContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<TblCompanion>(entity =>
+        modelBuilder.Entity<Companion>(entity =>
         {
             entity.HasKey(e => e.CompanionId).HasName("PK__tblCompa__8B53BE8B2BED7BDE");
 
@@ -68,7 +68,7 @@ public partial class DoctorWhoContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<TblDoctor>(entity =>
+        modelBuilder.Entity<Doctor>(entity =>
         {
             entity.HasKey(e => e.DoctorId).HasName("PK__tblDocto__2DC00EDF6E1BB984");
 
@@ -82,7 +82,7 @@ public partial class DoctorWhoContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<TblEnemy>(entity =>
+        modelBuilder.Entity<Enemy>(entity =>
         {
             entity.HasKey(e => e.EnemyId).HasName("PK__tblEnemy__911A0BD2AC4B36E9");
 
@@ -97,7 +97,7 @@ public partial class DoctorWhoContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<TblEpisode>(entity =>
+        modelBuilder.Entity<Episode>(entity =>
         {
             entity.HasKey(e => e.EpisodeId).HasName("PK__tblEpiso__AC66761511820723");
 
@@ -125,7 +125,7 @@ public partial class DoctorWhoContext : DbContext
                 .HasConstraintName("FK__tblEpisod__Docto__2C3393D0");
         });
 
-        modelBuilder.Entity<TblEpisodeCompanion>(entity =>
+        modelBuilder.Entity<EpisodeCompanion>(entity =>
         {
             entity.HasKey(e => e.EpisodeCompanionId).HasName("PK__tblEpiso__774F3833F16FC7C1");
 
@@ -146,7 +146,7 @@ public partial class DoctorWhoContext : DbContext
                 .HasConstraintName("FK__tblEpisod__Episo__38996AB5");
         });
 
-        modelBuilder.Entity<TblEpisodeEnemy>(entity =>
+        modelBuilder.Entity<EpisodeEnemy>(entity =>
         {
             entity.HasKey(e => e.EpisodeEnemyId).HasName("PK__tblEpiso__6DF24E50BD88F397");
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DoctorWho.Db;
 
-public partial class TblEpisode
+public partial class Episode
 {
     public int EpisodeId { get; set; }
 
@@ -23,11 +23,11 @@ public partial class TblEpisode
 
     public string? Notes { get; set; }
 
-    public virtual TblAuthor? Author { get; set; }
+    public virtual Author? Author { get; set; }
 
-    public virtual TblDoctor? Doctor { get; set; }
+    public virtual Doctor? Doctor { get; set; }
 
-    public virtual ICollection<TblEpisodeCompanion> TblEpisodeCompanions { get; set; } = new List<TblEpisodeCompanion>();
+    public virtual ICollection<EpisodeCompanion> TblEpisodeCompanions { get; set; } = new List<EpisodeCompanion>();
 
-    public virtual ICollection<TblEpisodeEnemy> TblEpisodeEnemies { get; set; } = new List<TblEpisodeEnemy>();
+    public virtual ICollection<EpisodeEnemy> TblEpisodeEnemies { get; set; } = new List<EpisodeEnemy>();
 }
