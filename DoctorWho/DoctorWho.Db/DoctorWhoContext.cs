@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DoctorWho.Db.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorWho.Db;
@@ -195,5 +196,8 @@ public partial class DoctorWhoContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
+    public List<ViewEpisode> ViewAllEpisodes() => 
+        ViewEpisodes.FromSqlRaw("SELECT * FROM dbo.viewEpisodes;").ToList();
+   
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
