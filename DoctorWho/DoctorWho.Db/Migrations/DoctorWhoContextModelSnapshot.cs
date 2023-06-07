@@ -22,7 +22,7 @@ namespace DoctorWho.Db.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DoctorWho.Db.TblAuthor", b =>
+            modelBuilder.Entity("DoctorWho.Db.Author", b =>
                 {
                     b.Property<int>("AuthorId")
                         .HasColumnType("int")
@@ -39,7 +39,7 @@ namespace DoctorWho.Db.Migrations
                     b.ToTable("tblAuthor", (string)null);
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblCompanion", b =>
+            modelBuilder.Entity("DoctorWho.Db.Companion", b =>
                 {
                     b.Property<int>("CompanionId")
                         .HasColumnType("int")
@@ -62,7 +62,7 @@ namespace DoctorWho.Db.Migrations
                     b.ToTable("tblCompanion", (string)null);
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblDoctor", b =>
+            modelBuilder.Entity("DoctorWho.Db.Doctor", b =>
                 {
                     b.Property<int>("DoctorId")
                         .HasColumnType("int")
@@ -91,7 +91,7 @@ namespace DoctorWho.Db.Migrations
                     b.ToTable("tblDoctor", (string)null);
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblEnemy", b =>
+            modelBuilder.Entity("DoctorWho.Db.Enemy", b =>
                 {
                     b.Property<int>("EnemyId")
                         .HasColumnType("int")
@@ -113,7 +113,7 @@ namespace DoctorWho.Db.Migrations
                     b.ToTable("tblEnemy", (string)null);
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblEpisode", b =>
+            modelBuilder.Entity("DoctorWho.Db.Episode", b =>
                 {
                     b.Property<int>("EpisodeId")
                         .HasColumnType("int")
@@ -160,7 +160,7 @@ namespace DoctorWho.Db.Migrations
                     b.ToTable("tblEpisode", (string)null);
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblEpisodeCompanion", b =>
+            modelBuilder.Entity("DoctorWho.Db.EpisodeCompanion", b =>
                 {
                     b.Property<int>("EpisodeCompanionId")
                         .HasColumnType("int")
@@ -184,7 +184,7 @@ namespace DoctorWho.Db.Migrations
                     b.ToTable("tblEpisodeCompanion", (string)null);
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblEpisodeEnemy", b =>
+            modelBuilder.Entity("DoctorWho.Db.EpisodeEnemy", b =>
                 {
                     b.Property<int>("EpisodeEnemyId")
                         .HasColumnType("int")
@@ -268,14 +268,14 @@ namespace DoctorWho.Db.Migrations
                     b.ToView("viewEpisodes", (string)null);
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblEpisode", b =>
+            modelBuilder.Entity("DoctorWho.Db.Episode", b =>
                 {
-                    b.HasOne("DoctorWho.Db.TblAuthor", "Author")
+                    b.HasOne("DoctorWho.Db.Author", "Author")
                         .WithMany("TblEpisodes")
                         .HasForeignKey("AuthorId")
                         .HasConstraintName("FK__tblEpisod__Autho__2B3F6F97");
 
-                    b.HasOne("DoctorWho.Db.TblDoctor", "Doctor")
+                    b.HasOne("DoctorWho.Db.Doctor", "Doctor")
                         .WithMany("TblEpisodes")
                         .HasForeignKey("DoctorId")
                         .HasConstraintName("FK__tblEpisod__Docto__2C3393D0");
@@ -285,14 +285,14 @@ namespace DoctorWho.Db.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblEpisodeCompanion", b =>
+            modelBuilder.Entity("DoctorWho.Db.EpisodeCompanion", b =>
                 {
-                    b.HasOne("DoctorWho.Db.TblCompanion", "Companion")
+                    b.HasOne("DoctorWho.Db.Companion", "Companion")
                         .WithMany("TblEpisodeCompanions")
                         .HasForeignKey("CompanionId")
                         .HasConstraintName("FK__tblEpisod__Compa__398D8EEE");
 
-                    b.HasOne("DoctorWho.Db.TblEpisode", "Episode")
+                    b.HasOne("DoctorWho.Db.Episode", "Episode")
                         .WithMany("TblEpisodeCompanions")
                         .HasForeignKey("EpisodeId")
                         .HasConstraintName("FK__tblEpisod__Episo__38996AB5");
@@ -302,14 +302,14 @@ namespace DoctorWho.Db.Migrations
                     b.Navigation("Episode");
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblEpisodeEnemy", b =>
+            modelBuilder.Entity("DoctorWho.Db.EpisodeEnemy", b =>
                 {
-                    b.HasOne("DoctorWho.Db.TblEnemy", "Enemy")
+                    b.HasOne("DoctorWho.Db.Enemy", "Enemy")
                         .WithMany("TblEpisodeEnemies")
                         .HasForeignKey("EnemyId")
                         .HasConstraintName("FK__tblEpisod__Enemy__3D5E1FD2");
 
-                    b.HasOne("DoctorWho.Db.TblEpisode", "Episode")
+                    b.HasOne("DoctorWho.Db.Episode", "Episode")
                         .WithMany("TblEpisodeEnemies")
                         .HasForeignKey("EpisodeId")
                         .HasConstraintName("FK__tblEpisod__Episo__3C69FB99");
@@ -319,27 +319,27 @@ namespace DoctorWho.Db.Migrations
                     b.Navigation("Episode");
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblAuthor", b =>
+            modelBuilder.Entity("DoctorWho.Db.Author", b =>
                 {
                     b.Navigation("TblEpisodes");
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblCompanion", b =>
+            modelBuilder.Entity("DoctorWho.Db.Companion", b =>
                 {
                     b.Navigation("TblEpisodeCompanions");
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblDoctor", b =>
+            modelBuilder.Entity("DoctorWho.Db.Doctor", b =>
                 {
                     b.Navigation("TblEpisodes");
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblEnemy", b =>
+            modelBuilder.Entity("DoctorWho.Db.Enemy", b =>
                 {
                     b.Navigation("TblEpisodeEnemies");
                 });
 
-            modelBuilder.Entity("DoctorWho.Db.TblEpisode", b =>
+            modelBuilder.Entity("DoctorWho.Db.Episode", b =>
                 {
                     b.Navigation("TblEpisodeCompanions");
 
