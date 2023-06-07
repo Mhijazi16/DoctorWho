@@ -15,19 +15,19 @@ public partial class DoctorWhoContext : DbContext
     {
     }
 
-    public virtual DbSet<Author> TblAuthors { get; set; }
+    public virtual DbSet<Author> Authors { get; set; }
 
-    public virtual DbSet<Companion> TblCompanions { get; set; }
+    public virtual DbSet<Companion> Companions { get; set; }
 
-    public virtual DbSet<Doctor> TblDoctors { get; set; }
+    public virtual DbSet<Doctor> Doctors { get; set; }
 
-    public virtual DbSet<Enemy> TblEnemies { get; set; }
+    public virtual DbSet<Enemy> Enemies { get; set; }
 
-    public virtual DbSet<Episode> TblEpisodes { get; set; }
+    public virtual DbSet<Episode> Episodes { get; set; }
 
-    public virtual DbSet<EpisodeCompanion> TblEpisodeCompanions { get; set; }
+    public virtual DbSet<EpisodeCompanion> EpisodeCompanions { get; set; }
 
-    public virtual DbSet<EpisodeEnemy> TblEpisodeEnemies { get; set; }
+    public virtual DbSet<EpisodeEnemy> EpisodeEnemies { get; set; }
 
     public virtual DbSet<ViewEpisode> ViewEpisodes { get; set; }
 
