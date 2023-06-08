@@ -42,5 +42,8 @@ public static class DoctorRepository
              return; 
          _context.Doctors.Remove(doctor);
          _context.SaveChanges(); 
-     }  
+     }
+     
+     public static List<Doctor> GetAllDoctors() 
+         => _context.Doctors.ToList();
 }
