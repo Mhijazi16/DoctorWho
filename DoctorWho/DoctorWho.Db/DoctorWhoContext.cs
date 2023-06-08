@@ -202,5 +202,8 @@ public partial class DoctorWhoContext : DbContext
     public List<ViewEpisode> ViewAllEpisodes() 
         => ViewEpisodes.FromSqlRaw("SELECT * FROM dbo.viewEpisodes;").ToList();
 
+    public string FnCompanions(int id)
+        =>  Set<FnResult>().FromSqlRaw("SELECT dbo.fnCompanions({0}) AS NAMES",id).First().Names;
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
