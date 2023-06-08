@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DoctorWho.Db.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorWho.Db;
@@ -16,7 +17,6 @@ public partial class DoctorWhoContext : DbContext
     }
 
     public virtual DbSet<Author> Authors { get; set; }
-
     public virtual DbSet<Companion> Companions { get; set; }
 
     public virtual DbSet<Doctor> Doctors { get; set; }
@@ -29,6 +29,7 @@ public partial class DoctorWhoContext : DbContext
 
     public virtual DbSet<EpisodeEnemy> EpisodeEnemies { get; set; }
 
+    public virtual DbSet<FnResult> FnResults { get; set; }
     public virtual DbSet<ViewEpisode> ViewEpisodes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -36,6 +37,9 @@ public partial class DoctorWhoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        //Building The Function Result Table 
+        modelBuilder.Entity<FnResult>().HasNoKey().ToTable("FnResults", t => t.ExcludeFromMigrations());
+        
         modelBuilder.Entity<Author>(entity =>
         {
             entity.HasKey(e => e.AuthorId).HasName("PK__tblAutho__70DAFC14745C864A");
@@ -194,6 +198,14 @@ public partial class DoctorWhoContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+
+    public List<ViewEpisode> ViewAllEpisodes() 
+        => ViewEpisodes.FromSqlRaw("SELECT * FROM dbo.viewEpisodes;").ToList();
+
+    public string FnCompanions(int id)
+        =>  Set<FnResult>().FromSqlRaw("SELECT dbo.fnCompanions({0}) AS NAMES",id).First().Names;
+    public string FnEnemies(int id)
+        =>  Set<FnResult>().FromSqlRaw("SELECT dbo.fnEnemies({0}) AS NAMES",id).First().Names;
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
