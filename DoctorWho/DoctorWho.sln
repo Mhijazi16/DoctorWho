@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorWho", "DoctorWho\Doct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorWho.Db", "DoctorWho.Db\DoctorWho.Db.csproj", "{C44A7D0E-7051-4F91-9590-D0B422156DDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorWhoRepository", "DoctorWhoRepository\DoctorWhoRepository.csproj", "{19E907D3-3C20-4E42-A215-A4B8E066A55C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{C44A7D0E-7051-4F91-9590-D0B422156DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C44A7D0E-7051-4F91-9590-D0B422156DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C44A7D0E-7051-4F91-9590-D0B422156DDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19E907D3-3C20-4E42-A215-A4B8E066A55C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19E907D3-3C20-4E42-A215-A4B8E066A55C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19E907D3-3C20-4E42-A215-A4B8E066A55C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19E907D3-3C20-4E42-A215-A4B8E066A55C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DoctorWho.Db;
 
-public partial class TblDoctor
+public partial class Doctor
 {
     public int DoctorId { get; set; }
 
@@ -17,5 +17,5 @@ public partial class TblDoctor
 
     public DateOnly FirstEpisodeDate { get; set; }
 
-    public virtual ICollection<TblEpisode> TblEpisodes { get; set; } = new List<TblEpisode>();
+    public virtual ICollection<Episode> TblEpisodes { get; set; } = new List<Episode>();
 }

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace DoctorWho.Db.Models;
 
-namespace DoctorWho.Db;
-
-public partial class ViewEpisode
+public class ViewEpisode
 {
     public int EpisodeId { get; set; }
 
@@ -30,4 +27,11 @@ public partial class ViewEpisode
     public DateOnly EpisodeDate { get; set; }
 
     public string? Notes { get; set; }
+
+    public override string ToString()
+    {
+        return $"EpisodeId: {EpisodeId}, AuthorId: {AuthorId}, DoctorId: {DoctorId}, Title: {Title}, AuthorName: {AuthorName}, DoctorName: {DoctorName}, " +
+               $"SeriesNumber: {SeriesNumber}, Enemies: {Enemies}, Companions: {Companions}, EpisodeNumber: {EpisodeNumber}, " +
+               $"EpisodeType: {EpisodeType}, EpisodeDate: {EpisodeDate}, Notes: {Notes}";
+    }
 }

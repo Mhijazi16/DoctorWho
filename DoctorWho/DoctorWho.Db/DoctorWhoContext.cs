@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DoctorWho.Db.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorWho.Db;
@@ -15,29 +16,31 @@ public partial class DoctorWhoContext : DbContext
     {
     }
 
-    public virtual DbSet<TblAuthor> TblAuthors { get; set; }
+    public virtual DbSet<Author> Authors { get; set; }
+    public virtual DbSet<Companion> Companions { get; set; }
 
-    public virtual DbSet<TblCompanion> TblCompanions { get; set; }
+    public virtual DbSet<Doctor> Doctors { get; set; }
 
-    public virtual DbSet<TblDoctor> TblDoctors { get; set; }
+    public virtual DbSet<Enemy> Enemies { get; set; }
 
-    public virtual DbSet<TblEnemy> TblEnemies { get; set; }
+    public virtual DbSet<Episode> Episodes { get; set; }
 
-    public virtual DbSet<TblEpisode> TblEpisodes { get; set; }
+    public virtual DbSet<EpisodeCompanion> EpisodeCompanions { get; set; }
 
-    public virtual DbSet<TblEpisodeCompanion> TblEpisodeCompanions { get; set; }
+    public virtual DbSet<EpisodeEnemy> EpisodeEnemies { get; set; }
 
-    public virtual DbSet<TblEpisodeEnemy> TblEpisodeEnemies { get; set; }
-
+    public virtual DbSet<FnResult> FnResults { get; set; }
     public virtual DbSet<ViewEpisode> ViewEpisodes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=localhost; Database=DoctorWho; User Id=sa; Password=Hijazi123; TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<TblAuthor>(entity =>
+        //Building The Function Result Table 
+        modelBuilder.Entity<FnResult>().HasNoKey().ToTable("FnResults", t => t.ExcludeFromMigrations());
+        
+        modelBuilder.Entity<Author>(entity =>
         {
             entity.HasKey(e => e.AuthorId).HasName("PK__tblAutho__70DAFC14745C864A");
 
@@ -51,7 +54,7 @@ public partial class DoctorWhoContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<TblCompanion>(entity =>
+        modelBuilder.Entity<Companion>(entity =>
         {
             entity.HasKey(e => e.CompanionId).HasName("PK__tblCompa__8B53BE8B2BED7BDE");
 
@@ -68,7 +71,7 @@ public partial class DoctorWhoContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<TblDoctor>(entity =>
+        modelBuilder.Entity<Doctor>(entity =>
         {
             entity.HasKey(e => e.DoctorId).HasName("PK__tblDocto__2DC00EDF6E1BB984");
 
@@ -82,7 +85,7 @@ public partial class DoctorWhoContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<TblEnemy>(entity =>
+        modelBuilder.Entity<Enemy>(entity =>
         {
             entity.HasKey(e => e.EnemyId).HasName("PK__tblEnemy__911A0BD2AC4B36E9");
 
@@ -97,7 +100,7 @@ public partial class DoctorWhoContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<TblEpisode>(entity =>
+        modelBuilder.Entity<Episode>(entity =>
         {
             entity.HasKey(e => e.EpisodeId).HasName("PK__tblEpiso__AC66761511820723");
 
@@ -125,7 +128,7 @@ public partial class DoctorWhoContext : DbContext
                 .HasConstraintName("FK__tblEpisod__Docto__2C3393D0");
         });
 
-        modelBuilder.Entity<TblEpisodeCompanion>(entity =>
+        modelBuilder.Entity<EpisodeCompanion>(entity =>
         {
             entity.HasKey(e => e.EpisodeCompanionId).HasName("PK__tblEpiso__774F3833F16FC7C1");
 
@@ -146,7 +149,7 @@ public partial class DoctorWhoContext : DbContext
                 .HasConstraintName("FK__tblEpisod__Episo__38996AB5");
         });
 
-        modelBuilder.Entity<TblEpisodeEnemy>(entity =>
+        modelBuilder.Entity<EpisodeEnemy>(entity =>
         {
             entity.HasKey(e => e.EpisodeEnemyId).HasName("PK__tblEpiso__6DF24E50BD88F397");
 
@@ -195,6 +198,14 @@ public partial class DoctorWhoContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+
+    public List<ViewEpisode> ViewAllEpisodes() 
+        => ViewEpisodes.FromSqlRaw("SELECT * FROM dbo.viewEpisodes;").ToList();
+
+    public string FnCompanions(int id)
+        =>  Set<FnResult>().FromSqlRaw("SELECT dbo.fnCompanions({0}) AS NAMES",id).First().Names;
+    public string FnEnemies(int id)
+        =>  Set<FnResult>().FromSqlRaw("SELECT dbo.fnEnemies({0}) AS NAMES",id).First().Names;
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
