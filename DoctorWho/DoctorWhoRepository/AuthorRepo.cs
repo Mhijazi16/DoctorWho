@@ -4,42 +4,33 @@ namespace DoctorWhoRepository;
 
 public static class AuthorRepo
 {
+    private static readonly DoctorWhoContext _context = new DoctorWhoContext();
     public static void AddAuthor(Author author)
-    {
-        using (var context = new DoctorWhoContext())
-        {
-            context.Authors.Add(author); 
-            context.SaveChanges(); 
-        }
+    { 
+        _context.Authors.Add(author); 
+        _context.SaveChanges(); 
     }
 
-    public static void AddAuthor(int id, string Name)
-    {
-        using (var context = new DoctorWhoContext())
-        {
-            context.Authors.Add(new Author{AuthorId = id,AuthorName = Name});
-            context.SaveChanges(); 
-        }
+    public static void AddAuthor(int id, string name)
+    { 
+        _context.Authors.Add(new Author{AuthorId = id,AuthorName = name}); 
+        _context.SaveChanges(); 
     }
  
     public static void UpdateAuthorName(Author author, string name)
-    {
-        using (var context = new DoctorWhoContext())
-        {
-            author.AuthorName = name;
-            context.Authors.Update(author);
-            context.SaveChanges();
-        } 
+    { 
+        author.AuthorName = name; 
+        _context.Authors.Update(author); 
+        _context.SaveChanges();
     }
 
     public static void UpdateAuthorName(int id, string name)
     {
-        using (var context = new DoctorWhoContext())
-        {
-            var author = context.Authors.Find(id);
-            author.AuthorName = name;
-            context.Authors.Update(author);
-            context.SaveChanges(); 
-        }
-    }   
+        var author = _context.Authors.Find(id);
+        if (author == null)
+            return; 
+        author.AuthorName = name; 
+        _context.Authors.Update(author); 
+        _context.SaveChanges(); 
+    }
 }
