@@ -204,6 +204,8 @@ public partial class DoctorWhoContext : DbContext
 
     public string FnCompanions(int id)
         =>  Set<FnResult>().FromSqlRaw("SELECT dbo.fnCompanions({0}) AS NAMES",id).First().Names;
+    public string FnEnemies(int id)
+        =>  Set<FnResult>().FromSqlRaw("SELECT dbo.fnEnemies({0}) AS NAMES",id).First().Names;
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
