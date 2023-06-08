@@ -2,7 +2,7 @@ using DoctorWho.Db;
 
 namespace DoctorWhoRepository;
 
-public static class AuthorRepo
+public static class AuthorRepository
 {
     private static readonly DoctorWhoContext _context = new DoctorWhoContext();
     public static void AddAuthor(Author author)
