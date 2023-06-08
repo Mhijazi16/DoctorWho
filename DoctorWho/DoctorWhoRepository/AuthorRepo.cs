@@ -21,4 +21,25 @@ public static class AuthorRepo
             context.SaveChanges(); 
         }
     }
+ 
+    public static void UpdateAuthorName(Author author, string name)
+    {
+        using (var context = new DoctorWhoContext())
+        {
+            author.AuthorName = name;
+            context.Authors.Update(author);
+            context.SaveChanges();
+        } 
+    }
+
+    public static void UpdateAuthorName(int id, string name)
+    {
+        using (var context = new DoctorWhoContext())
+        {
+            var author = context.Authors.Find(id);
+            author.AuthorName = name;
+            context.Authors.Update(author);
+            context.SaveChanges(); 
+        }
+    }   
 }
