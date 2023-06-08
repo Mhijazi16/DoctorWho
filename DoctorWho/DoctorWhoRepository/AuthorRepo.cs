@@ -33,4 +33,19 @@ public static class AuthorRepo
         _context.Authors.Update(author); 
         _context.SaveChanges(); 
     }
+
+    public static void DeleteAuthor(Author author)
+    {
+        _context.Authors.Remove(author);
+        _context.SaveChanges(); 
+    }
+
+    public static void DeleteAuthor(int id)
+    {
+        var author = _context.Authors.Find(id);
+        if (author == null)
+            return; 
+        _context.Authors.Remove(author);
+        _context.SaveChanges(); 
+    }
 }
